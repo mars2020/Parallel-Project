@@ -21,7 +21,7 @@ if( -e out_omp_FEM_1 ) then     #if this file exist
 
 endif
 
-if(-e out_omp_FEM_2)
+if(-e out_omp_FEM_2) then
 
    # chunk size = 100
    setenv OMP_SCHEDULE "STATIC,100"
@@ -41,7 +41,7 @@ if(-e out_omp_FEM_2)
 
 endif
 
-if( -e out_omp_FEM_3)
+if( -e out_omp_FEM_3) then
 
    # chunk size = 1000
    echo " FEM"

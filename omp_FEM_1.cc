@@ -38,7 +38,7 @@ int main()
 	{ printf("thread :%d\n",omp_get_thread_num());}
 	#endif
 
-	double start,end,time_disp,time_init,time_reorder;  // timing varialbes	
+	double start,end,time_disp,time_init,time_reorder,time_total;  // timing varialbes	
 	int dofi,dofj,i;
 	int dim = 3;	// degrees of freedom and dimension
 	int nodes = 10000;	// Total nodes
@@ -92,13 +92,16 @@ int main()
 	}
 	end = mysecond();
 	time_reorder = end-start;
-	
+
+	// total time	
+	time_total = time_init + time_reorder;
+
 	// Printing Timing
 	printf("-------------------------------------------------\n");
 	printf("Initialization of known displacements :: %1.3e\n",time_disp);
 	printf("Initializing gcon		      :: %1.3e\n",time_init);
 	printf("Reordering gcon			      :: %1.3e\n",time_reorder);
-	printf("Total gcon time			      :: %1.3e\n",time_init + time_reorder);
+	printf("Total gcon time			      :: %1.3e\n",time_total);
 
 
 	// appending times to file for plotting	

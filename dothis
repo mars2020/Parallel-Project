@@ -1,0 +1,64 @@
+#!/bin/tcsh
+
+if( -e out_omp_FEM_1 ) then     #if this file exist
+
+   # no chunk size                    
+   echo "omp_FEM"
+   setenv OMP_SCHEDULE "STATIC"
+   echo "schedule: $OMP_SCHEDULE"
+   foreach i ( 1 2 3 4 5 6 7 8 9 10 11 12 13 14 15 16) 
+      setenv OMP_NUM_THREADS $i
+      ./out_omp_FEM_1
+   end
+
+
+   setenv OMP_SCHEDULE "dynamic"
+   echo "schedule: $OMP_SCHEDULE"
+   foreach i ( 1 2 3 4 5 6 7 8 9 10 11 12 13 14 15 16)
+      setenv OMP_NUM_THREADS $i
+      ./out_omp_FEM_1
+   end
+
+endif
+
+if(-e out_omp_FEM_2)
+
+   # chunk size = 100
+   setenv OMP_SCHEDULE "STATIC,100"
+   echo "schedule: $OMP_SCHEDULE"
+   foreach i ( 1 2 3 4 5 6 7 8 9 10 11 12 13 14 15 16)
+      setenv OMP_NUM_THREADS $i
+      ./out_omp_FEM_2
+   end
+
+
+   setenv OMP_SCHEDULE "dynamic,100"
+   echo "schedule: $OMP_SCHEDULE"
+   foreach i ( 1 2 3 4 5 6 7 8 9 10 11 12 13 14 15 16)
+      setenv OMP_NUM_THREADS $i
+      ./out_omp_FEM_2
+   end
+
+endif
+
+if( -e out_omp_FEM_3)
+
+   # chunk size = 1000
+   echo " FEM"
+   setenv OMP_SCHEDULE "STATIC,1000"
+   echo "schedule: $OMP_SCHEDULE"
+   foreach i ( 1 2 3 4 5 6 7 8 9 10 11 12 13 14 15 16) 
+      setenv OMP_NUM_THREADS $i
+      ./out_omp_FEM_3
+   end
+
+
+   setenv OMP_SCHEDULE "dynamic,1000"
+   echo "schedule: $OMP_SCHEDULE"
+   foreach i ( 1 2 3 4 5 6 7 8 9 10 11 12 13 14 15 16)
+      setenv OMP_NUM_THREADS $i
+      ./out_omp_FEM_3
+   end
+
+endif
+

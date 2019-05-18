@@ -1,0 +1,14 @@
+#!/bin/bash
+
+# arguments will be omp_FEM
+
+#icc  -c  affinity.c -D _GNU_SOURCE
+rm -f out_omp_FEM_?
+
+file=$1
+  base=${file%.*}
+
+echo icc -qopenmp $file -o out_$base
+     icc -qopenmp $file -o out_$base
+
+

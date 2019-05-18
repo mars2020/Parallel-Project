@@ -25,13 +25,13 @@ int main()
 	double start,end,time_disp,time_init,time_reorder;  // timing varialbes	
 	int dofi,dofj; // temporary values
 	int dim = 3;	// degrees of freedom and dimension
-	int nodes = 4;	// Total nodes
+	int nodes = 100000;	// Total nodes
 	int total_dof = nodes*dim;	// total degrees of freedom
 	int* gcon = (int*) malloc(nodes*dim*sizeof(int));	// global ID's
-	//int known_disp = (nodes*dim)/5;	// constraints on structure
-	//int* disp = (int*) malloc(known_disp*sizeof(int)); // array of known nodes
-	int known_disp = 2;
-	int disp[known_disp] = {12,1};
+	int known_disp = (nodes*dim)/5;	// constraints on structure
+	int* disp = (int*) malloc(known_disp*sizeof(int)); // array of known nodes
+	//int known_disp = 2;
+	//int disp[known_disp] = {12,1};
 	// Checking if there was an error with the allocation
 	
 	if(gcon == NULL || disp == NULL)
@@ -40,17 +40,17 @@ int main()
 	  	exit(0);
 	}
 	
-	/*
+
 	// Creating array with known diplacements
  	start = mysecond();	
 	for(int i=0;i<known_disp;i++)
 	{
 		disp[i] = rand()%total_dof + 1; // generates the global ID 
-		cout << disp[i] << endl;
+		//cout << disp[i] << endl;
 	}
 	end = mysecond();
 	time_disp = end-start;
-	*/
+
 	
 	// Creating the global node ID's
 	start = mysecond();
@@ -63,6 +63,7 @@ int main()
 	end = mysecond();
 	time_init = end-start;
 
+	/*
 	// Print array
 	printf("Before Reordering\n");
 	for(int i=0;i<nodes;i++){
@@ -71,7 +72,7 @@ int main()
 		}
 		cout << endl;
 	}
-
+	*/
 	// Reordering gcon with known displacements
 	start = mysecond();
 	for(int i=0;i<known_disp;i++){
@@ -86,6 +87,7 @@ int main()
 	}
 	end = mysecond();
 	time_reorder = end-start;
+	/*
 	// Print array
 	printf("After Reordering\n");
 	for(int i=0;i<nodes;i++){
@@ -94,7 +96,7 @@ int main()
 		}
 		cout << endl;
 	}
-	
+	*/
 	// Printing Timing
 	printf("-------------------------------------------------\n");
 	printf("Initialization of known displacements :: %1.3e\n",time_disp);

@@ -41,7 +41,7 @@ int main()
 	double start,end,time_disp,time_init,time_reorder,time_total;  // timing varialbes	
 	int dofi,dofj,i;
 	int dim = 3;	// degrees of freedom and dimension
-	int nodes = 10000;	// Total nodes
+	int nodes = 10000;	// Total nodes (10,000 and 100,000)
 	int total_dof = nodes*dim;	// total degrees of freedom
 	int* gcon = (int*) malloc(nodes*dim*sizeof(int));	// global ID's
 	int known_disp = (nodes*dim)/10;	// constraints on structure
